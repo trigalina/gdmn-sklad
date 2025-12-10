@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GDMN Склад - Мобильное приложение для управления складом</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="2" height="2" fill="white" opacity="0.1"/></svg>');
+            animation: slide 20s linear infinite;
+        }
+
+        @keyframes slide {
+            0% { transform: translateX(0) translateY(0); }
+            100% { transform: translateX(100px) translateY(100px); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 80px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 60px;
+            color: #2d3748;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 20px auto 0;
+            border-radius: 2px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .feature-title {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #2d3748;
+        }
+
+        .feature-description {
+            color: #718096;
+            line-height: 1.8;
+        }
+
+        .modules-section {
+            background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .module-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .module-card:hover {
+            border-color: #667eea;
+            transform: scale(1.05);
+        }
+
+        .module-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+
+        .integration-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .integration-section .section-title {
+            color: white;
+        }
+
+        .integration-section .section-title::after {
+            background: white;
+        }
+
+        .integration-logos {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .integration-logo {
+            background: white;
+            padding: 20px 40px;
+            border-radius: 10px;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #667eea;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .integration-logo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .tech-requirements {
+            background: #f8f9fa;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .tech-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .tech-card h3 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .tech-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .tech-card li {
+            padding: 10px 0 10px 30px;
+            position: relative;
+            color: #4a5568;
+        }
+
+        .tech-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .footer p {
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .section-title {
+                font-size: 1.8em;
+            }
+
+            .features-grid,
+            .modules-grid,
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .integration-logos {
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1>GDMN Склад</h1>
+            <p class="subtitle">Комплексная система управления складскими операциями</p>
+            <a href="#features" class="cta-button">Узнать больше</a>
+        </div>
+    </header>
+
+    <section class="section" id="features">
+        <div class="container">
+            <h2 class="section-title">Возможности приложения</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3 class="feature-title">Мобильность</h3>
+                    <p class="feature-description">Работайте на складе с любого мобильного устройства на Android или iOS. Все данные всегда под рукой.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Документы</h3>
+                    <p class="feature-description">Оперативно оформляйте документы складского движения: приход, перемещение, возврат поставщику.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h3 class="feature-title">Инвентаризация</h3>
+                    <p class="feature-description">Проводите инвентаризацию товаров прямо с мобильного устройства, обеспечивая точность учета.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3 class="feature-title">Сканирование</h3>
+                    <p class="feature-description">Регистрируйте операции путем сканирования штрих-кодов товаров и складских единиц.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📡</div>
+                    <h3 class="feature-title">Офлайн режим</h3>
+                    <p class="feature-description">Работайте без интернета. Все данные синхронизируются при восстановлении соединения.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3 class="feature-title">Остатки</h3>
+                    <p class="feature-description">Просматривайте остатки товаров на складе в разрезе подразделений в режиме реального времени.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section modules-section">
+        <div class="container">
+            <h2 class="section-title">Модули системы</h2>
+            <div class="modules-grid">
+                <div class="module-card">
+                    <div class="module-number">1</div>
+                    <h3>Мобильное приложение</h3>
+                    <p>Для работника склада на Android и iOS</p>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-number">2</div>
+                    <h3>Веб-приложение</h3>
+                    <p>Администрирование пользователей и устройств</p>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-number">3</div>
+                    <h3>Аналитика</h3>
+                    <p>Отчеты, справочники и настройки системы</p>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-number">4</div>
+                    <h3>Облачный сервер</h3>
+                    <p>Обмен данными между устройствами и базой данных</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section integration-section">
+        <div class="container">
+            <h2 class="section-title">Интеграция с ERP-системами</h2>
+            <p style="text-align: center; font-size: 1.2em; margin-bottom: 30px; opacity: 0.95;">
+                GDMN Склад легко интегрируется с существующими системами предприятия
+            </p>
+            <div class="integration-logos">
+                <div class="integration-logo">Гедымин</div>
+                <div class="integration-logo">SAP</div>
+                <div class="integration-logo">1C</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section tech-requirements">
+        <div class="container">
+            <h2 class="section-title">Технические требования</h2>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <h3>📱 Мобильные устройства</h3>
+                    <ul>
+                        <li>Android 13 или новее</li>
+                        <li>Минимум 3 GB RAM</li>
+                        <li>Рекомендуется 6 GB RAM для комфортной работы</li>
+                    </ul>
+                </div>
+
+                <div class="tech-card">
+                    <h3>🔗 Интеграция</h3>
+                    <ul>
+                        <li>Обмен данными по HTTPS</li>
+                        <li>REST API для взаимодействия</li>
+                        <li>Поддержка различных ERP-систем</li>
+                    </ul>
+                </div>
+
+                <div class="tech-card">
+                    <h3>💻 Сервер Гедымин</h3>
+                    <ul>
+                        <li>Windows Server 2019 или новее</li>
+                        <li>От 64 GB оперативной памяти</li>
+                        <li>RAID контроллер с NVMe/SSD дисками</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p><strong>GDMN Склад</strong> — современное решение для управления складом</p>
+            <p>© Golden Software</p>
+ <p> Все права защищены</p>
+        </div>
+    </footer>
+
+    <script>
+        // Плавная прокрутка к секциям
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Анимация появления карточек при прокрутке
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateY(30px)';
+                    entry.target.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, 100);
+                    
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .module-card, .tech-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
