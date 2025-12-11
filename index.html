@@ -27,20 +27,13 @@
             overflow: hidden;
         }
 
-        .header::before {
-            content: '';
+        .header canvas {
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="2" height="2" fill="white" opacity="0.1"/></svg>');
-            animation: slide 20s linear infinite;
-        }
-
-        @keyframes slide {
-            0% { transform: translateX(0) translateY(0); }
-            100% { transform: translateX(100px) translateY(100px); }
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
         }
 
         .header-content {
@@ -269,6 +262,250 @@
             box-shadow: 0 15px 40px rgba(0,0,0,0.3);
         }
 
+        .screenshots-section {
+            background: white;
+            padding: 80px 20px;
+        }
+
+        .clients-section {
+            background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
+            padding: 80px 20px;
+            overflow: hidden;
+        }
+
+        .clients-carousel-container {
+            margin-top: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .clients-carousel-container::before,
+        .clients-carousel-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 100px;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .clients-carousel-container::before {
+            left: 0;
+            background: linear-gradient(to right, #f6f9fc, transparent);
+        }
+
+        .clients-carousel-container::after {
+            right: 0;
+            background: linear-gradient(to left, #eef2f7, transparent);
+        }
+
+        .clients-carousel {
+            display: flex;
+            animation: scroll 30s linear infinite;
+            width: max-content;
+        }
+
+        .clients-carousel:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .client-logo {
+            background: white;
+            padding: 30px 50px;
+            margin: 0 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 200px;
+            height: 120px;
+            transition: all 0.3s ease;
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .client-logo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .stat-number {
+            font-size: 3em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #718096;
+            font-size: 1.1em;
+        }
+
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .screenshot-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .screenshot-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+
+        .screenshot-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .screenshot-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .screenshot-caption {
+            padding: 20px;
+            text-align: center;
+            font-weight: 600;
+            color: #2d3748;
+            background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+            animation: zoomIn 0.3s ease;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: #667eea;
+            transform: scale(1.2);
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 20px;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .modal-nav:hover {
+            color: #667eea;
+            transform: translateY(-50%) scale(1.2);
+        }
+
+        .modal-prev {
+            left: 20px;
+        }
+
+        .modal-next {
+            right: 20px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
         .tech-requirements {
             background: #f8f9fa;
         }
@@ -278,39 +515,6 @@
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 40px;
             margin-top: 50px;
-        }
-
-        .tech-card {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-        }
-
-        .tech-card h3 {
-            color: #667eea;
-            margin-bottom: 20px;
-            font-size: 1.5em;
-        }
-
-        .tech-card ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .tech-card li {
-            padding: 10px 0 10px 30px;
-            position: relative;
-            color: #4a5568;
-        }
-
-        .tech-card li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #667eea;
-            font-weight: bold;
-            font-size: 1.2em;
         }
 
         .footer {
@@ -334,8 +538,7 @@
             }
 
             .features-grid,
-            .modules-grid,
-            .tech-grid {
+            .modules-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -347,6 +550,7 @@
 </head>
 <body>
     <header class="header">
+        <canvas id="webCanvas"></canvas>
         <div class="header-content">
             <h1>GDMN Склад</h1>
             <p class="subtitle">Комплексная система управления складскими операциями</p>
@@ -361,7 +565,7 @@
                 <div class="feature-card">
                     <div class="feature-icon">📱</div>
                     <h3 class="feature-title">Мобильность</h3>
-                    <p class="feature-description">Работайте на складе с любого мобильного устройства на Android. Все данные всегда под рукой.</p>
+                    <p class="feature-description">Работайте на складе с любого мобильного устройства на Android или iOS. Все данные всегда под рукой.</p>
                 </div>
 
                 <div class="feature-card">
@@ -404,7 +608,7 @@
                 <div class="module-card">
                     <div class="module-number">1</div>
                     <h3>Мобильное приложение</h3>
-                    <p>Для работника склада на Android</p>
+                    <p>Для работника склада на Android и iOS</p>
                 </div>
 
                 <div class="module-card">
@@ -431,7 +635,7 @@
     <section class="section integration-section">
         <div class="container">
             <h2 class="section-title">Интеграция с ERP-системами</h2>
-            <p style="text-align: center; font-size: 1.2em; margin-bottom: 30px; opacity: 0.95;">
+            <p style="text-align: center; font-size: 1.2em; margin-bottom: 20px; opacity: 0.95;">
                 GDMN Склад легко интегрируется с существующими системами предприятия
             </p>
             <div class="integration-logos">
@@ -439,52 +643,303 @@
                 <div class="integration-logo">SAP</div>
                 <div class="integration-logo">1C</div>
             </div>
+            <div style="margin-top: 50px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                <ul style="list-style: none; padding: 0; text-align: left; font-size: 1.1em; line-height: 2;">
+                    <li style="padding: 10px 0; padding-left: 30px; position: relative;">
+                        <span style="position: absolute; left: 0; color: white; font-size: 1.3em;">✓</span>
+                        Обмен данными по HTTPS
+                    </li>
+                    <li style="padding: 10px 0; padding-left: 30px; position: relative;">
+                        <span style="position: absolute; left: 0; color: white; font-size: 1.3em;">✓</span>
+                        REST API для взаимодействия
+                    </li>
+                    <li style="padding: 10px 0; padding-left: 30px; position: relative;">
+                        <span style="position: absolute; left: 0; color: white; font-size: 1.3em;">✓</span>
+                        Поддержка различных ERP-систем
+                    </li>
+                </ul>
+            </div>
         </div>
     </section>
 
-    <section class="section tech-requirements">
+    <section class="section clients-section">
         <div class="container">
-            <h2 class="section-title">Технические требования</h2>
-            <div class="tech-grid">
-                <div class="tech-card">
-                    <h3>📱 Мобильные устройства</h3>
-                    <ul>
-                        <li>Android 13 или новее</li>
-                        <li>Минимум 3 GB RAM</li>
-                        <li>Рекомендуется 6 GB RAM для комфортной работы</li>
-                    </ul>
+            <h2 class="section-title">Нам доверяют</h2>
+            <p style="text-align: center; font-size: 1.2em; color: #718096; margin-bottom: 30px;">
+                Более 50 компаний уже используют GDMN Склад для оптимизации складских процессов
+            </p>
+            
+            <div class="clients-carousel-container">
+                <div class="clients-carousel">
+                    <!-- Первый набор логотипов -->
+                    <div class="client-logo">ОАО «Витебская бройлерная птицефабрика»</div>
+                    <div class="client-logo">ОАО «Сморгонский комбинат хлебопродуктов»</div>
+                    <div class="client-logo">ОАО «Беларуськалий»</div>
+                    <div class="client-logo">ОАО «Минскхлебпром»</div>
+                    <div class="client-logo">ООО «Угощение из Волковыска»</div>
+                    <div class="client-logo">ОАО «Солигорская птицефабрика»</div>
+                    <div class="client-logo">ОАО «Пыщево-Агро»</div>
+                    <div class="client-logo">ОАО «Атлант»</div>
+                    <div class="client-logo">ОАО «Слодыч»</div>
+                    <div class="client-logo">ОАО «МАЗ»</div>
+                    <div class="client-logo">ОАО «Березовский мясоконсервный комбинат».</div>
+                    
+                    <!-- Дублирование для бесконечной прокрутки -->
+                       <div class="client-logo">ОАО «Витебская бройлерная птицефабрика»</div>
+                    <div class="client-logo">ОАО «Сморгонский комбинат хлебопродуктов»</div>
+                    <div class="client-logo">ОАО «Беларуськалий»</div>
+                    <div class="client-logo">ОАО «Минскхлебпром»</div>
+                    <div class="client-logo">ООО «Угощение из Волковыска»</div>
+                    <div class="client-logo">ОАО «Солигорская птицефабрика»</div>
+                    <div class="client-logo">ОАО «Пыщево-Агро»</div>
+                    <div class="client-logo">ОАО «Атлант»</div>
+                    <div class="client-logo">ОАО «Слодыч»</div>
+                    <div class="client-logo">ОАО «МАЗ»</div>
+                    <div class="client-logo">ОАО «Березовский мясоконсервный комбинат».</div>
                 </div>
+            </div>
 
-                <div class="tech-card">
-                    <h3>🔗 Интеграция</h3>
-                    <ul>
-                        <li>Обмен данными по HTTPS</li>
-                        <li>REST API для взаимодействия</li>
-                        <li>Поддержка различных ERP-систем</li>
-                    </ul>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Компаний-клиентов</div>
                 </div>
-
-                <div class="tech-card">
-                    <h3>💻 Сервер</h3>
-                    <ul>
-                        <li>Windows Server 2019 или новее</li>
-                        <li>От 64 GB оперативной памяти</li>
-                        <li>RAID контроллер с NVMe/SSD дисками</li>
-                    </ul>
+                <div class="stat-card">
+                    <div class="stat-number">200+</div>
+                    <div class="stat-label">Активных пользователей</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">99.9%</div>
+                    <div class="stat-label">Время работы</div>
                 </div>
             </div>
         </div>
     </section>
 
+    <section class="section screenshots-section">
+        <div class="container">
+            <h2 class="section-title">Скриншоты приложения</h2>
+            <p style="text-align: center; font-size: 1.2em; color: #718096; margin-bottom: 30px;">
+                Посмотрите, как работает GDMN Склад на реальных примерах
+            </p>
+            <div class="screenshots-grid">
+                <div class="screenshot-card" onclick="openModal(0)">
+                    <img src="https://github.com/trigalina/gdmn-sklad/blob/1aa79c12d3ed046c26d151815ef0e5ad430e5013/Screenshot_7777.png?raw=true" alt="Веб-интерфейс администрирования" data-screen="0">
+                    <div class="screenshot-caption">Веб-интерфейс администрирования</div>
+                </div>
+
+                <div class="screenshot-card" onclick="openModal(1)">
+                    <img src="ХХХ" alt="Просмотр остатков" data-screen="1">
+                    <div class="screenshot-caption">Просмотр остатков</div>
+                </div>
+
+                <div class="screenshot-card" onclick="openModal(2)">
+                    <img src="ХХХ.jpg" alt="Работа со сканером" data-screen="2">
+                    <div class="screenshot-caption">Работа со сканером</div>
+                </div>
+
+                <div class="screenshot-card" onclick="openModal(3)">
+                    <img src="ХХХ.jpg" alt="Оформление документов" data-screen="3">
+                    <div class="screenshot-caption">Оформление документов</div>
+                </div>
+
+                <div class="screenshot-card" onclick="openModal(4)">
+                    <img src="https:ХХХ.jpg" alt="Список документов" data-screen="4">
+                    <div class="screenshot-caption">Список документов</div>
+                </div>
+
+                <div class="screenshot-card" onclick="openModal(5)">
+                    <img src="https:ХХХ.jpg" alt="Справочники" data-screen="5">
+                    <div class="screenshot-caption">Справочники</div>
+                </div>
+
+                <div class="screenshot-card" onclick="openModal(6)">
+                    <img src="https:/ХХХ.jpg" alt="Главное меню" data-screen="6">
+                    <div class="screenshot-caption">Главное меню</div>
+                </div>
+
+                <div class="screenshot-card" onclick="openModal(7)">
+                    <img src="https:/ХХХ.jpg" alt="Отчет по сканированию" data-screen="7">
+                    <div class="screenshot-caption">Отчет по сканированию</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Модальное окно для просмотра скриншотов -->
+    <div id="imageModal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal(event)">&times;</span>
+            <span class="modal-nav modal-prev" onclick="changeImage(event, -1)">&#10094;</span>
+            <img id="modalImage" src="" alt="Скриншот">
+            <span class="modal-nav modal-next" onclick="changeImage(event, 1)">&#10095;</span>
+        </div>
+    </div>
+
     <footer class="footer">
         <div class="container">
             <p><strong>GDMN Склад</strong> — современное решение для управления складом</p>
-            <p>© Golden Software</p>
- <p> Все права защищены</p>
+            <p>© 2024 Все права защищены</p>
         </div>
     </footer>
 
     <script>
+        // Паутинка в header
+        const canvas = document.getElementById('webCanvas');
+        const ctx = canvas.getContext('2d');
+        const header = document.querySelector('.header');
+        
+        canvas.width = header.offsetWidth;
+        canvas.height = header.offsetHeight;
+        
+        window.addEventListener('resize', () => {
+            canvas.width = header.offsetWidth;
+            canvas.height = header.offsetHeight;
+        });
+        
+        const particles = [];
+        const particleCount = 100;
+        const maxDistance = 120;
+        let mouse = { x: null, y: null };
+        
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.3;
+                this.vy = (Math.random() - 0.5) * 0.3;
+                this.radius = 1.5;
+            }
+            
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+            
+            draw() {
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+        
+        header.addEventListener('mousemove', (e) => {
+            const rect = header.getBoundingClientRect();
+            mouse.x = e.clientX - rect.left;
+            mouse.y = e.clientY - rect.top;
+        });
+        
+        header.addEventListener('mouseleave', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+        
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < maxDistance) {
+                        const opacity = (1 - distance / maxDistance) * 0.5;
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+                
+                if (mouse.x !== null && mouse.y !== null) {
+                    const dx = particles[i].x - mouse.x;
+                    const dy = particles[i].y - mouse.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < maxDistance * 2) {
+                        const opacity = 1 - distance / (maxDistance * 2);
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * 0.8})`;
+                        ctx.lineWidth = 1.5;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(mouse.x, mouse.y);
+                        ctx.stroke();
+                        
+                        // Рисуем точку курсора
+                        ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+                        ctx.beginPath();
+                        ctx.arc(mouse.x, mouse.y, 3, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                }
+            }
+            
+            requestAnimationFrame(animate);
+        }
+        
+        animate();
+
+        // Модальное окно для скриншотов
+        let currentImageIndex = 0;
+        const screenshots = document.querySelectorAll('.screenshot-card img');
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+
+        function openModal(index) {
+            currentImageIndex = index;
+            modal.classList.add('active');
+            modalImg.src = screenshots[index].src;
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(event) {
+            if (event.target === modal || event.target.classList.contains('modal-close')) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function changeImage(event, direction) {
+            event.stopPropagation();
+            currentImageIndex += direction;
+            
+            if (currentImageIndex < 0) {
+                currentImageIndex = screenshots.length - 1;
+            } else if (currentImageIndex >= screenshots.length) {
+                currentImageIndex = 0;
+            }
+            
+            modalImg.src = screenshots[currentImageIndex].src;
+        }
+
+        // Закрытие по Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+            if (modal.classList.contains('active')) {
+                if (e.key === 'ArrowLeft') changeImage(e, -1);
+                if (e.key === 'ArrowRight') changeImage(e, 1);
+            }
+        });
+
         // Плавная прокрутка к секциям
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
