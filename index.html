@@ -254,7 +254,7 @@
             font-weight: bold;
             color: #667eea;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: all 0.6s ease;
+            transition: all 0.3s ease;
         }
 
         .integration-logo:hover {
@@ -382,10 +382,7 @@
             font-size: 1.1em;
         }
 
-
-   <!-- new -->
-        
-           .contact-section {
+        .contact-section {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             padding: 80px 20px;
             color: white;
@@ -404,127 +401,6 @@
             animation: float 20s linear infinite;
         }
 
-        
-        .screenshots-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .screenshot-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .screenshot-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-        }
-
-        .screenshot-card img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-
-        .screenshot-card:hover img {
-            transform: scale(1.05);
-        }
-
-        .screenshot-caption {
-            padding: 20px;
-            text-align: center;
-            font-weight: 600;
-            color: #2d3748;
-            background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 10000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            animation: fadeIn 0.3s ease;
-        }
-
-        .modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-content {
-            max-width: 90%;
-            max-height: 90%;
-            position: relative;
-            animation: zoomIn 0.3s ease;
-        }
-
-        .modal-content img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-        }
-
-        .modal-close {
-            position: absolute;
-            top: -40px;
-            right: 0;
-            color: white;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .modal-close:hover {
-            color: #667eea;
-            transform: scale(1.2);
-        }
-
-        .modal-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            color: white;
-            font-size: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            padding: 20px;
-            transition: all 0.3s ease;
-            user-select: none;
-        }
-
-        .modal-nav:hover {
-            color: #667eea;
-            transform: translateY(-50%) scale(1.2);
-        }
-
-        .modal-prev {
-            left: 20px;
-        }
-
-        .modal-next {
-            right: 20px;
-        }
-
-
-
-
-
-
-     <!-- new -->
         @keyframes float {
             0% { transform: translateY(0); }
             100% { transform: translateY(100px); }
@@ -726,18 +602,6 @@
             to { opacity: 1; }
         }
 
-
-    
-
-
-
-
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
         @keyframes zoomIn {
             from { transform: scale(0.8); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
@@ -903,14 +767,13 @@
         <div class="container">
             <h2 class="section-title">Нам доверяют</h2>
             <p style="text-align: center; font-size: 1.2em; color: #718096; margin-bottom: 30px;">
-                Более 20 компаний уже используют GDMN Склад для оптимизации складских процессов
+                Более 50 компаний уже используют GDMN Склад для оптимизации складских процессов
             </p>
             
             <div class="clients-carousel-container">
                 <div class="clients-carousel">
-
-                    
-                    <div class="client-logo">ОАО «Витебская бройлерная птицефабрика»</div>
+                    <!-- Первый набор логотипов -->
+                   <div class="client-logo">ОАО «Витебская бройлерная птицефабрика»</div>
                     <div class="client-logo">ОАО «Сморгонский комбинат хлебопродуктов»</div>
                     <div class="client-logo">ОАО «Беларуськалий»</div>
                     <div class="client-logo">ОАО «Минскхлебпром»</div>
@@ -933,20 +796,19 @@
                     <div class="client-logo">ОАО «Атлант»</div>
                     <div class="client-logo">ОАО «Слодыч»</div>
                     <div class="client-logo">ОАО «МАЗ»</div>
-                    <div class="client-logo">ОАО «Березовский мясоконсервный комбинат».</div>
-                </div>
+                    <div class="client-logo">ОАО «Березовский мясоконсервный комбинат». </div>
             </div>
 
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-number">20+</div>
+                    <div class="stat-number">50+</div>
                     <div class="stat-label">Компаний-клиентов</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-number">200+</div>
                     <div class="stat-label">Активных пользователей</div>
                 </div>
-              
+           
             </div>
         </div>
     </section>
@@ -958,7 +820,7 @@
                 Посмотрите, как работает GDMN Склад на реальных примерах
             </p>
             <div class="screenshots-grid">
-                <div class="screenshot-card" onclick="openModal(0)">
+       <div class="screenshot-card" onclick="openModal(0)">
                     <img src="https://github.com/trigalina/gdmn-sklad/blob/1aa79c12d3ed046c26d151815ef0e5ad430e5013/Screenshot_7777.png?raw=true" alt="Веб-интерфейс администрирования" data-screen="0">
                     <div class="screenshot-caption">Веб-интерфейс администрирования</div>
                 </div>
@@ -999,11 +861,8 @@
                 </div>
             </div>
         </div>
-
-        
     </section>
 
-    
     <!-- Модальное окно для просмотра скриншотов -->
     <div id="imageModal" class="modal" onclick="closeModal(event)">
         <div class="modal-content">
@@ -1014,9 +873,6 @@
         </div>
     </div>
 
-
-
-   <!-- Контакты -->
     <section class="section contact-section">
         <div class="container">
             <h2 class="section-title">Свяжитесь с нами</h2>
@@ -1038,8 +894,7 @@
                     <div class="contact-icon">✉️</div>
                     <div class="contact-title">Email</div>
                     <div class="contact-info">
-                        <a href="mailto:support@gsbelarus.com">support@gsbelarus.com</a><br>
-                    
+                        <a href="mailto:support@goldensoftware.com">support@goldensoftware.com</a>
                     </div>
                 </div>
 
@@ -1047,44 +902,7 @@
                     <div class="contact-icon">📍</div>
                     <div class="contact-title">Адрес</div>
                     <div class="contact-info">
-                        г. Минск, ул.Скрыганова 6/2 <br>
-                        офис 2-204, 220073
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>   <!-- Контакты -->
-    <section class="section contact-section">
-        <div class="container">
-            <h2 class="section-title">Свяжитесь с нами</h2>
-            <p style="text-align: center; font-size: 1.2em; margin-bottom: 30px; opacity: 0.95;">
-                Готовы внедрить GDMN Склад? Наши специалисты ответят на все ваши вопросы
-            </p>
-            
-            <div class="contact-grid">
-                <div class="contact-card">
-                    <div class="contact-icon">📞</div>
-                    <div class="contact-title">Телефон</div>
-                    <div class="contact-info">
-                        <a href="tel:+375447804553">+375 (44) 780-45-53</a><br>
-                        <a href="tel:+375173791759">+375 (17) 379-17-59</a>
-                    </div>
-                </div>
-
-                <div class="contact-card">
-                    <div class="contact-icon">✉️</div>
-                    <div class="contact-title">Email</div>
-                    <div class="contact-info">
-                        <a href="mailto:support@gsbelarus.com">support@gsbelarus.com</a><br>
-                    
-                    </div>
-                </div>
-
-                <div class="contact-card">
-                    <div class="contact-icon">📍</div>
-                    <div class="contact-title">Адрес</div>
-                    <div class="contact-info">
-                        г. Минск, ул.Скрыганова 6/2 <br>
+                        г. Минск, ул. Скрыганова 6/2<br>
                         офис 2-204, 220073
                     </div>
                 </div>
@@ -1092,16 +910,11 @@
         </div>
     </section>
 
-
-
-
-    
-    
     <footer class="footer">
         <div class="container">
             <p><strong>GDMN Склад</strong> — современное решение для управления складом</p>
-            <p>© Golden Software</p>
-                  <p> Все права защищены</p>
+             <p>© Golden Software</p>
+            <p>© Все права защищены</p>
         </div>
     </footer>
 
