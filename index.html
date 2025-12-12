@@ -762,26 +762,9 @@
                 </div>
             </div>
         </div>
+
+        
     </section>
-
-    <!-- Модальное окно для просмотра скриншотов -->
-    <div id="imageModal" class="modal" onclick="closeModal(event)">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeModal(event)">&times;</span>
-            <span class="modal-nav modal-prev" onclick="changeImage(event, -1)">&#10094;</span>
-            <img id="modalImage" src="" alt="Скриншот">
-            <span class="modal-nav modal-next" onclick="changeImage(event, 1)">&#10095;</span>
-        </div>
-    </div>
-
-    <footer class="footer">
-        <div class="container">
-            <p><strong>GDMN Склад</strong> — современное решение для управления складом</p>
-            <p>© Golden Software</p>
-                  <p> Все права защищены</p>
-        </div>
-    </footer>
-
      <!-- Контакты -->
     <section class="section contact-section">
         <div class="container">
@@ -820,6 +803,26 @@
             </div>
         </div>
     </section>
+
+    
+    <!-- Модальное окно для просмотра скриншотов -->
+    <div id="imageModal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal(event)">&times;</span>
+            <span class="modal-nav modal-prev" onclick="changeImage(event, -1)">&#10094;</span>
+            <img id="modalImage" src="" alt="Скриншот">
+            <span class="modal-nav modal-next" onclick="changeImage(event, 1)">&#10095;</span>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p><strong>GDMN Склад</strong> — современное решение для управления складом</p>
+            <p>© Golden Software</p>
+                  <p> Все права защищены</p>
+        </div>
+    </footer>
+
     <script>
         // Паутинка в header
         const canvas = document.getElementById('webCanvas');
